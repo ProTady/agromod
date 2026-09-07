@@ -85,7 +85,7 @@ const BLOG_POSTS_DATA = [
     author: "Ing. Agrónomo AgroMod",
     date: "28 Agosto, 2026",
     readTime: "5 min de lectura",
-    image: "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/citricos_ndvi_detalle.jpg",
     excerpt: "Cuando una hoja cambia de color al amarillo o marrón, el cultivo ya perdió semanas de fotosíntesis. Descubre cómo la banda Red Edge y el infrarrojo cercano alertan problemas a tiempo.",
     content: `
       <p class="lead text-lg font-medium text-gray-700 mb-4">La teledetección agrícola ha dejado de ser una tecnología experimental para convertirse en el estándar de oro en la gestión de cultivos de alto valor en Perú y el mundo.</p>
@@ -113,7 +113,7 @@ const BLOG_POSTS_DATA = [
     author: "Equipo Técnico AgroMod",
     date: "02 Septiembre, 2026",
     readTime: "4 min de lectura",
-    image: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/paltos_comparativa_rgb_ndvi.jpg",
     excerpt: "Aplicar productos químicos a todo el lote cuando la plaga solo está en el 15% del área es un desperdicio financiero y ambiental. Así funciona el control dirigido.",
     content: `
       <p class="lead text-lg font-medium text-gray-700 mb-4">El paradigma tradicional del 'baño parejo' en pulverizaciones agrícolas está siendo reemplazado por la agricultura de precisión.</p>
@@ -144,7 +144,7 @@ const BLOG_POSTS_DATA = [
     author: "Área de Innovación AgroMod",
     date: "05 Septiembre, 2026",
     readTime: "6 min de lectura",
-    image: "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/paltos_ndvi_detalle.jpg",
     excerpt: "El tiempo entre que un evaluador anota una plaga en su planilla física y gerencia toma la decisión suele ser de 24 a 48 horas. Con Dromapp la información fluye al instante.",
     content: `
       <p class="lead text-lg font-medium text-gray-700 mb-4">Los técnicos y evaluadores son los ojos del agrónomo en el campo. Sin embargo, el papel mojado, los datos mal transcritos y la falta de geolocalización frenan la rapidez de respuesta.</p>
