@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Agrícola &amp; Teledetección | AgroMod</title>
+  <meta name="description" content="Artículos técnicos sobre drones agrícolas, índice NDVI, NDRE, evaluación fitosanitaria y reducción de costos con teledetección.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandGreen: '#55B32B',
+            brandGreenDark: '#3E8A1D',
+            brandGreenLight: '#74C137',
+            brandNavy: '#0B252C',
+            brandNavyDark: '#06171C',
+            brandSurface: '#F8FAF7'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilos Personalizados -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-brandSurface text-gray-800 antialiased flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <img src="assets/images/logo.png" alt="AgroMod Logo" class="h-12 w-auto transition-transform duration-300 group-hover:scale-105">
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold tracking-tight text-brandNavy leading-none">AGRO<span class="text-brandGreen">MOD</span></span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Blog &amp; Recursos</span>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html#servicios" class="text-sm font-semibold text-gray-700 hover:text-brandGreen transition">Servicios</a>
+          <a href="index.html#ecosistema" class="text-sm font-semibold text-gray-700 hover:text-brandGreen transition">Ecosistema Tech</a>
+          <a href="blog.html" class="text-sm font-bold text-brandGreen transition">Blog Agrícola</a>
+          <a href="index.html#cotizador" class="text-sm font-semibold text-gray-700 hover:text-brandGreen transition">Cotizador</a>
+        </div>
+
+        <div class="hidden md:block">
+          <a href="index.html#cotizador" class="py-2.5 px-5 rounded-xl bg-brandGreen hover:bg-brandGreenDark text-white font-bold text-sm shadow-md transition transform active:scale-95">
+            Cotizar Servicio
+          </a>
+        </div>
+
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+      <a href="index.html#servicios" class="block text-base font-semibold text-gray-800 py-2">Servicios</a>
+      <a href="index.html#ecosistema" class="block text-base font-semibold text-gray-800 py-2">Ecosistema Tech</a>
+      <a href="blog.html" class="block text-base font-bold text-brandGreen py-2">Blog Agrícola</a>
+      <a href="index.html#cotizador" class="block w-full text-center py-3 bg-brandGreen text-white font-bold rounded-xl text-sm">Cotizar Servicio</a>
+    </div>
+  </nav>
+
+  <!-- Header Blog con Buscador -->
+  <header class="gradient-hero text-white py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-4">
+      <span class="badge-pill bg-white/10 text-green-300 border border-white/15">Artículos &amp; Conocimiento</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Blog AgroMod: Teledetección y Campo</h1>
+      <p class="text-gray-300 text-base max-w-xl mx-auto font-normal">
+        Aprende cómo maximizar la rentabilidad de tu fundo con análisis multiespectral, control fitosanitario digital y agricultura de precisión.
+      </p>
+
+      <!-- Input de Búsqueda -->
+      <div class="pt-4 max-w-lg mx-auto">
+        <div class="relative">
+          <input type="text" id="blog-search" placeholder="Buscar por tema (ej. NDVI, plagas, Mavic 3M, ahorro)..." class="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-brandGreen shadow-lg">
+          <svg class="w-5 h-5 text-gray-400 absolute left-4 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filtros de Categoría & Feed -->
+  <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+    
+    <!-- Botones de Filtro -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <button data-category="all" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-200 bg-green-600 text-white shadow-sm">
+        Todos los Artículos
+      </button>
+      <button data-category="Vuelos Multiespectrales" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+        Vuelos Multiespectrales
+      </button>
+      <button data-category="Fitosanidad y Gestión" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+        Fitosanidad &amp; Costos
+      </button>
+      <button data-category="Tecnología de Campo" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+        Apps &amp; Software
+      </button>
+    </div>
+
+    <!-- Grid de Artículos Dinámico (Controlado por blog.js) -->
+    <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Inyectado por blog.js -->
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandNavy text-white pt-12 pb-8 border-t border-brandNavyDark mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+      <div class="flex items-center justify-center space-x-2">
+        <img src="assets/images/logo.png" alt="AgroMod Logo" class="h-8 w-auto">
+        <span class="text-xl font-bold tracking-tight text-white">AGRO<span class="text-brandGreen">MOD</span></span>
+      </div>
+      <p class="text-gray-400 text-xs">&copy; 2026 AgroMod. Blog técnico de agricultura de precisión y teledetección.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/blog.js"></script>
+</body>
+</html>
