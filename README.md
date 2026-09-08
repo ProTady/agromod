@@ -1,65 +1,88 @@
-# AgroMod — Web Comercial y Blog Informativo
+# AgroMod — web comercial y blog
 
-Portal web y blog de servicios de agronomía de precisión, teledetección multiespectral con DJI Mavic 3M, evaluaciones fitosanitarias con **Dromapp** y plataforma de decisiones **DROMOD**.
+Sitio estático para presentar vuelos multiespectrales, evaluación de campo con
+Dromapp y seguimiento por lote en DROMOD. Compatible con GitHub Pages, incluida
+la ruta de proyecto `/agromod/`.
 
----
+## Ejecutar localmente
 
-## 🚀 Cómo Ejecutar y Probar Localmente
+Con Python instalado, desde esta carpeta:
 
-Puedes abrir directamente el archivo `index.html` en tu navegador, o levantar un servidor web local liviano con Python:
-
-```bash
-cd d:\italo411\djim3m\agromod
-python -m http.server 3000
+```powershell
+python -m http.server 3000 --bind 127.0.0.1
 ```
 
-Luego abre tu navegador en:
-`http://localhost:3000`
+Abrir http://127.0.0.1:3000/ en el navegador. No requiere instalar paquetes,
+compilar CSS, iniciar DROMOD ni conectarse a su base de datos.
 
----
+## Datos comerciales confirmados
 
-## 📂 Estructura del Proyecto
+- WhatsApp: **+51 944 163 763**, configurado en `COMPANY_INFO.whatsapp` de
+  `assets/js/data.js`. Todos los enlaces usan ese destinatario.
+- Atención: **valles de Huaura–Sayán**, para **mandarinas y paltos**.
+- Servicios: vuelos multiespectrales, evaluación con Dromapp y seguimiento en DROMOD.
+- Precios: cotización personalizada según superficie, ubicación y servicio.
+- Correo comercial: aún no disponible; no se publica una dirección de ejemplo.
+- Diseño: se conserva la versión aprobada por el responsable.
 
-```text
-agromod/
-├── index.html              # Landing comercial (Servicios, Ecosistema, Cotizador con WhatsApp)
-├── blog.html               # Portal del blog (Buscador, filtro por categorías, feed dinámico)
-├── post.html               # Plantilla de lectura dinámica de artículos (?id=...)
-├── assets/
-│   ├── css/
-│   │   └── style.css       # Estilos personalizados, gradientes y animaciones
-│   ├── js/
-│   │   ├── api.js          # Capa de Servicio / API desacoplada (Prepara conexión a BD)
-│   │   ├── data.js         # Base de datos simulada en memoria (Servicios, Artículos, Reseñas)
-│   │   ├── main.js         # Lógica interactiva de portada, menú móvil y cotizador
-│   │   └── blog.js         # Lógica del feed y visor de artículos
-│   └── images/
-│       └── logo.png        # Logotipo oficial de AgroMod
-└── README.md
+Datos confirmados el 8 de septiembre de 2026.
+
+- El formulario prepara un resumen en memoria y permite revisarlo o editarlo.
+- El usuario confirma el envío en WhatsApp. La página no confirma recepción.
+- Sin un destinatario válido, permite copiar el resumen y explica que WhatsApp
+  aún no está disponible.
+- No se guardan solicitudes en localStorage ni se envían a un backend.
+- No se publican tarifas o descuentos de ejemplo. El alcance se cotiza por lote.
+- La opción de copiar requiere permiso de portapapeles del navegador; si no está
+  disponible, el resumen se selecciona para copiarlo manualmente.
+
+No hay una conexión automática con la PC central de DROMOD. Añadir una bandeja de solicitudes sería una integración
+independiente con autenticación, manejo de errores y almacenamiento definidos.
+
+## Contenido y estructura
+
+- `index.html`: portada, servicios, galería, flujo de trabajo, solicitud y FAQ.
+- `blog.html`: búsqueda y filtros, conservados en la URL.
+- `post.html?id=3`: lectura de artículos; acepta también los slugs existentes.
+- `assets/js/data.js`: catálogo, muestras y contenido editorial.
+- `assets/js/api.js`: consulta del catálogo y preparación del mensaje.
+- `assets/js/main.js`: navegación, galería y formulario.
+- `assets/js/blog.js`: listado y lectura del blog.
+- `assets/css/style.css`: estilos locales y adaptación a pantallas pequeñas.
+- `assets/images/`: capturas originales; el visor permite abrirlas completas.
+
+Las imágenes originales no se modificaron. Las inferiores se cargan de forma
+diferida y tienen dimensiones declaradas. Los estilos y las fuentes del sistema
+no dependen de un CDN. El identificador gráfico de AgroMod es tipográfico; el
+archivo `logo.png` existente corresponde a Dromapp y se conserva en el repositorio.
+
+Los artículos mantienen sus IDs y slugs para preservar enlaces anteriores.
+Se retiraron cifras de ahorro, diagnósticos automáticos y testimonios de ejemplo
+sin respaldo en el proyecto. El HTML de artículos es contenido editorial local;
+no debe interpolarse HTML procedente de formularios o de un futuro backend sin
+la validación correspondiente.
+
+## Verificación
+
+Con Node.js instalado:
+
+```powershell
+node tests/site.test.cjs
 ```
 
----
+Comprueba solicitudes, validación, enlaces de WhatsApp, filtros, orden de
+publicaciones, slugs y existencia de recursos. El entorno de prueba no ofrece
+red ni almacenamiento a la API: preparar una solicitud debe funcionar sin ellos.
 
-## 🔌 Cómo Conectar una Base de Datos / Backend en el Futuro
+También se revisó en navegador la portada de escritorio y celular, menú,
+selección de DROMOD, edición del resumen, filtros de mapas, visor completo,
+búsqueda sin tildes, estado vacío y lectura del blog. Estas comprobaciones no
+envían mensajes a terceros. No equivalen a una prueba de recepción comercial.
 
-La aplicación utiliza el **Patrón de Capa de Servicio** en [`assets/js/api.js`](assets/js/api.js).
+## Publicación
 
-### Paso 1: Activar el modo remoto en `api.js`
-Abre `assets/js/api.js` y cambia los parámetros:
+Sitio público: https://protady.github.io/agromod/.
 
-```javascript
-const CONFIG = {
-  USE_REMOTE_BACKEND: true, // Cambiar a true
-  BASE_API_URL: "http://localhost:8000/api", // Tu endpoint FastAPI o Supabase
-  TIMEOUT_MS: 8000
-};
-```
-
-### Paso 2: Endpoints REST esperados por el frontend
-Tu backend (por ejemplo en FastAPI dentro de DROMOD) solo debe exponer:
-- `GET /api/services`: Retorna array de servicios.
-- `GET /api/blog`: Retorna array de artículos (acepta filtros `?category=...&q=...`).
-- `GET /api/blog/{id}`: Retorna el detalle del artículo.
-- `POST /api/quotes`: Recibe payload de cotización `{ name, phone, crop, hectares, serviceType, notes }`.
-
-**¡No necesitarás modificar ni una sola línea de los archivos HTML!**
+GitHub Pages publica los cambios de la rama configurada para el sitio. Antes de
+actualizarla, ejecutar las comprobaciones y revisar los datos comerciales.
+Esta web es independiente del servidor central de DROMOD.

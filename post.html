@@ -1,130 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artículo | Blog AgroMod</title>
-  <link rel="icon" type="image/png" href="assets/images/logo.png">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brandGreen: '#55B32B',
-            brandGreenDark: '#3E8A1D',
-            brandGreenLight: '#74C137',
-            brandNavy: '#0B252C',
-            brandNavyDark: '#06171C',
-            brandSurface: '#F8FAF7'
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Estilos Personalizados -->
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="bg-brandSurface text-gray-800 antialiased flex flex-col min-h-screen">
-
-  <!-- Navbar -->
-  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <a href="index.html" class="flex items-center space-x-3 group">
-          <img src="assets/images/logo.png" alt="AgroMod Logo" class="h-12 w-auto transition-transform duration-300 group-hover:scale-105">
-          <div class="flex flex-col">
-            <span class="text-2xl font-extrabold tracking-tight text-brandNavy leading-none">AGRO<span class="text-brandGreen">MOD</span></span>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">Lectura</span>
-          </div>
-        </a>
-
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="index.html#servicios" class="text-sm font-semibold text-gray-700 hover:text-brandGreen transition">Servicios</a>
-          <a href="index.html#ecosistema" class="text-sm font-semibold text-gray-700 hover:text-brandGreen transition">Ecosistema Tech</a>
-          <a href="blog.html" class="text-sm font-bold text-brandGreen transition">Blog Agrícola</a>
-          <a href="index.html#cotizador" class="text-sm font-semibold text-gray-700 hover:text-brandGreen transition">Cotizador</a>
-        </div>
-
-        <div class="hidden md:block">
-          <a href="index.html#cotizador" class="py-2.5 px-5 rounded-xl bg-brandGreen hover:bg-brandGreenDark text-white font-bold text-sm shadow-md transition transform active:scale-95">
-            Cotizar Servicio
-          </a>
-        </div>
-
-        <div class="md:hidden flex items-center">
-          <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-600 hover:text-gray-900 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Menú Móvil -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
-      <a href="index.html#servicios" class="block text-base font-semibold text-gray-800 py-2">Servicios</a>
-      <a href="index.html#ecosistema" class="block text-base font-semibold text-gray-800 py-2">Ecosistema Tech</a>
-      <a href="blog.html" class="block text-base font-bold text-brandGreen py-2">Blog Agrícola</a>
-      <a href="index.html#cotizador" class="block w-full text-center py-3 bg-brandGreen text-white font-bold rounded-xl text-sm">Cotizar Servicio</a>
-    </div>
-  </nav>
-
-  <!-- Contenedor Principal del Post -->
-  <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-    
-    <!-- Inyectado por blog.js (initSinglePostPage) -->
-    <article id="post-article-container" class="bg-white rounded-3xl p-6 sm:p-12 shadow-agro border border-gray-100">
-      <div class="text-center py-16">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-green-500 border-t-transparent"></div>
-        <p class="text-sm text-gray-500 mt-2">Cargando artículo...</p>
-      </div>
-    </article>
-
-    <!-- Banner CTA al final del post -->
-    <div class="my-12 p-8 rounded-3xl gradient-agro text-white shadow-agro-lg text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div>
-        <h3 class="text-xl sm:text-2xl font-bold">¿Quieres implementar esta tecnología en tus lotes?</h3>
-        <p class="text-gray-300 text-sm mt-1 max-w-lg">
-          Te acompañamos desde el primer vuelo de calibración con el Mavic 3M hasta la integración completa de tu equipo en Dromapp.
-        </p>
-      </div>
-      <a href="index.html#cotizador" class="py-3 px-6 rounded-xl bg-white text-brandNavy font-extrabold text-sm hover:bg-gray-100 transition shadow-md whitespace-nowrap">
-        Cotizar Diagnóstico
-      </a>
-    </div>
-
-    <!-- Artículos Relacionados -->
-    <div class="mt-16 pt-8 border-t border-gray-200">
-      <h3 class="text-2xl font-bold text-brandNavy mb-6">Artículos Relacionados</h3>
-      <div id="related-posts-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Inyectado por blog.js -->
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-brandNavy text-white pt-12 pb-8 border-t border-brandNavyDark mt-auto">
-    <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-      <div class="flex items-center justify-center space-x-2">
-        <img src="assets/images/logo.png" alt="AgroMod Logo" class="h-8 w-auto">
-        <span class="text-xl font-bold tracking-tight text-white">AGRO<span class="text-brandGreen">MOD</span></span>
-      </div>
-      <p class="text-gray-400 text-xs">&copy; 2026 AgroMod. Teledetección multiespectral y decisiones de campo.</p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/blog.js"></script>
-</body>
-</html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b302c">
+<title>Artículo | Blog AgroMod</title>
+<meta name="description" content="Lee las guías de AgroMod sobre mapas del dron, evaluación de campo y seguimiento de cultivos.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Artículo | Blog AgroMod">
+<meta property="og:description" content="Lee las guías de AgroMod sobre mapas del dron, evaluación de campo y seguimiento de cultivos.">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/api.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/blog.js" defer></script></head><body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="wordmark" href="index.html" aria-label="AgroMod, inicio"><span class="brand-symbol" aria-hidden="true">a</span><span>Agro<strong>Mod</strong><small>AGRICULTURA DE PRECISIÓN</small></span></a>
+    <button class="menu-toggle" id="mobile-menu-btn" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <nav id="mobile-menu" class="main-nav" aria-label="Principal">
+      <a href="index.html#servicios">Servicios</a>
+      <a href="index.html#galeria">Mapas reales</a>
+      <a href="index.html#ecosistema">Dromapp + DROMOD</a>
+      <a href="blog.html">Blog</a>
+      <a class="button button-small" href="index.html#cotizador">Solicitar evaluación <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</header><main id="contenido"><div class="container article-breadcrumb"><a class="text-link" href="blog.html">← Volver al blog</a></div><article id="post-article-container" class="container article-container"><p role="status">Cargando artículo…</p><noscript>Activa JavaScript para leer el artículo.</noscript></article><section class="container section" id="related-section"><div class="section-heading"><div><p class="eyebrow">SIGUE EXPLORANDO</p><h2>También en el cuaderno.</h2></div></div><div class="blog-grid" id="related-posts-container"></div></section><section class="container article-cta"><div><p class="eyebrow">LLEVEMOS ESTO A TU CAMPO</p><h2>¿Qué necesitas revisar en tu lote?</h2></div><a class="button" href="index.html#cotizador">Solicitar evaluación ↗</a></section></main><footer class="site-footer" id="contacto"><div class="container footer-main">
+  <div><a class="wordmark" href="index.html">Agro<strong>Mod</strong></a><p>El campo, visto con más información.<br>Vuelos, evaluación y seguimiento por lote.</p></div>
+  <div><h2>Conversemos sobre tu cultivo</h2><p>Operando en los valles de Huaura–Sayán.<br>Evaluación de mandarinas y paltos.</p><a class="text-link" href="index.html#cotizador">Preparar una solicitud <span aria-hidden="true">↗</span></a><a class="footer-whatsapp" data-whatsapp hidden target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a></div>
+  <div class="footer-links"><a href="index.html#servicios">Servicios</a><a href="index.html#galeria">Muestras de mapas</a><a href="blog.html">Blog agrícola</a><a href="index.html#preguntas">Preguntas frecuentes</a></div>
+</div><div class="container footer-bottom"><span>© <span data-year>2026</span> AgroMod · Perú</span><span>Información para acompañar la evaluación agronómica.</span></div></footer></body></html>

@@ -1,164 +1,49 @@
 /**
- * AGROMOD - Capa de Servicio / API Desacoplada
- * =========================================================================
- * Esta capa centraliza todas las peticiones de datos de la web y el blog.
- * 
- * FASE ACTUAL (Mock/Local):
- * Retorna Promesas basadas en los datos estructurados en data.js.
- * 
- * FASE FUTURA (Backend / Base de Datos):
- * Simplemente cambia USE_REMOTE_BACKEND = true y define BASE_API_URL.
- * Toda la interfaz seguirá funcionando exactamente igual sin cambiar el HTML.
- * =========================================================================
+ * Catálogo estático: no se envían ni guardan solicitudes en un servidor.
+ * Las funciones de solicitud preparan un mensaje; el usuario confirma el envío en WhatsApp.
  */
-
-const AgroModAPI = (function() {
-  // Configuración de conexión futura
-  const CONFIG = {
-    USE_REMOTE_BACKEND: false, // Cambiar a true cuando haya backend REST
-    BASE_API_URL: "http://localhost:8000/api", // Ejemplo: FastAPI DROMOD
-    TIMEOUT_MS: 8000
+const AgroModAPI = (() => {
+  const normalize = value => String(value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  const whatsappNumber = raw => {
+    const value = String(raw ?? "").trim();
+    if (!/^\+?[\d\s().-]+$/.test(value)) return null;
+    const digits = value.replace(/\D/g, "");
+    if (!/^[1-9]\d{7,14}$/.test(digits) || /(\d)\1{7,}/.test(digits)) return null;
+    return digits;
   };
-
   return {
-    /**
-     * Obtiene la información general de la empresa
-     */
-    async getCompanyInfo() {
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/company`);
-        return await res.json();
-      }
-      return Promise.resolve(COMPANY_INFO);
+    async getCompanyInfo() { return {...COMPANY_INFO}; },
+    async getServices() { return SERVICES_DATA.map(service => ({...service})); },
+    async getServiceById(id) { return SERVICES_DATA.find(service => service.id === id) || null; },
+    async getBlogPosts(category = "all", query = "") {
+      const search = normalize(query);
+      return BLOG_POSTS_DATA.filter(post =>
+        (!category || category === "all" || normalize(post.category) === normalize(category)) &&
+        (!search || normalize(post.title + " " + post.excerpt + " " + post.category).includes(search))
+      ).sort((a,b) => b.publishedAt.localeCompare(a.publishedAt));
     },
-
-    /**
-     * Obtiene el listado de servicios de AgroMod
-     */
-    async getServices() {
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/services`);
-        return await res.json();
-      }
-      return Promise.resolve(SERVICES_DATA);
+    async getPostById(id) { return BLOG_POSTS_DATA.find(post => String(post.id) === String(id) || post.slug === id) || null; },
+    getGallery(crop = "all", index = "all") {
+      return GALLERY_DATA.filter(item => (crop === "all" || item.crop === crop) && (index === "all" || item.indices.includes(index)));
     },
-
-    /**
-     * Obtiene un servicio específico por su ID
-     */
-    async getServiceById(id) {
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/services/${id}`);
-        return await res.json();
-      }
-      const item = SERVICES_DATA.find(s => s.id === id);
-      return Promise.resolve(item || null);
+    getWhatsAppUrl(message, number = COMPANY_INFO.whatsapp) {
+      const digits = whatsappNumber(number);
+      return digits ? "https://wa.me/" + digits + "?text=" + encodeURIComponent(message) : null;
     },
-
-    /**
-     * Obtiene artículos de blog con filtrado opcional por categoría o término de búsqueda
-     */
-    async getBlogPosts(category = "all", searchQuery = "") {
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const params = new URLSearchParams();
-        if (category && category !== "all") params.append("category", category);
-        if (searchQuery) params.append("q", searchQuery);
-        const res = await fetch(`${CONFIG.BASE_API_URL}/blog?${params.toString()}`);
-        return await res.json();
-      }
-
-      let filtered = [...BLOG_POSTS_DATA];
-
-      if (category && category !== "all") {
-        filtered = filtered.filter(p => p.category.toLowerCase() === category.toLowerCase());
-      }
-
-      if (searchQuery && searchQuery.trim() !== "") {
-        const q = searchQuery.toLowerCase().trim();
-        filtered = filtered.filter(p => 
-          p.title.toLowerCase().includes(q) || 
-          p.excerpt.toLowerCase().includes(q)
-        );
-      }
-
-      return Promise.resolve(filtered);
-    },
-
-    /**
-     * Obtiene un artículo específico por ID o Slug
-     */
-    async getPostById(idOrSlug) {
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/blog/${idOrSlug}`);
-        return await res.json();
-      }
-      const post = BLOG_POSTS_DATA.find(p => p.id == idOrSlug || p.slug === idOrSlug);
-      return Promise.resolve(post || null);
-    },
-
-    /**
-     * Obtiene los testimonios de clientes
-     */
-    async getTestimonials() {
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/testimonials`);
-        return await res.json();
-      }
-      return Promise.resolve(TESTIMONIALS_DATA);
-    },
-
-    /**
-     * Registra una cotización enviada por el usuario
-     */
-    async submitQuote(quoteData) {
-      console.log("[AgroModAPI] Registrando solicitud de cotización:", quoteData);
-      
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/quotes`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(quoteData)
-        });
-        return await res.json();
-      }
-
-      // Simulación de persistencia local (en localStorage) para no perder datos en fase estática
-      try {
-        const savedQuotes = JSON.parse(localStorage.getItem("agromod_quotes") || "[]");
-        quoteData.timestamp = new Date().toISOString();
-        quoteData.id = "Q-" + Date.now();
-        savedQuotes.push(quoteData);
-        localStorage.setItem("agromod_quotes", JSON.stringify(savedQuotes));
-      } catch (e) {
-        console.warn("No se pudo guardar en localStorage:", e);
-      }
-
-      return Promise.resolve({
-        success: true,
-        message: "Cotización registrada exitosamente.",
-        quoteId: quoteData.id
-      });
-    },
-
-    /**
-     * Registra un mensaje de contacto
-     */
-    async submitContact(contactData) {
-      console.log("[AgroModAPI] Registrando mensaje de contacto:", contactData);
-
-      if (CONFIG.USE_REMOTE_BACKEND) {
-        const res = await fetch(`${CONFIG.BASE_API_URL}/contact`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(contactData)
-        });
-        return await res.json();
-      }
-
-      return Promise.resolve({
-        success: true,
-        message: "Gracias por comunicarte con AgroMod. Te responderemos a la brevedad."
-      });
+    prepareQuote(input) {
+      const fields = ["name","phone","crop","location","service","notes"];
+      const data = Object.fromEntries(fields.map(key => [key, String(input[key] ?? "").trim()]));
+      data.hectares = Number(input.hectares);
+      const service = SERVICES_DATA.find(item => item.id === data.service);
+      if (!data.name || !data.location || !data.crop || !service) throw new Error("Completa tu nombre, cultivo, ubicación y servicio.");
+      if (data.name.length > 100 || data.location.length > 160 || data.notes.length > 1200) throw new Error("Acorta los datos para preparar la solicitud.");
+      if (!/^\+?[\d\s().-]{7,24}$/.test(data.phone) || !/^\d{7,15}$/.test(data.phone.replace(/\D/g,""))) throw new Error("Revisa el teléfono e incluye el código de país.");
+      if (!Number.isFinite(data.hectares) || data.hectares < 0.01 || data.hectares > 100000) throw new Error("Indica una superficie válida, desde 0.01 hectáreas.");
+      const hectares = new Intl.NumberFormat("es-PE", {maximumFractionDigits:2}).format(data.hectares);
+      const lines = ["Hola, AgroMod. Quisiera solicitar una evaluación de mi lote.", "", "Nombre o empresa: " + data.name, "Teléfono: " + data.phone, "Cultivo: " + data.crop, "Superficie: " + hectares + " ha", "Ubicación: " + data.location, "Servicio: " + service.title];
+      if (data.notes) lines.push("Observaciones: " + data.notes);
+      lines.push("", "Me gustaría coordinar el alcance, la disponibilidad y una propuesta.");
+      return {message:lines.join("\n"), data, service};
     }
   };
 })();
