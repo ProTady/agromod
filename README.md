@@ -48,6 +48,8 @@ independiente con autenticación, manejo de errores y almacenamiento definidos.
 - `assets/js/api.js`: consulta del catálogo y preparación del mensaje.
 - `assets/js/main.js`: navegación, galería y formulario.
 - `assets/js/blog.js`: listado y lectura del blog.
+- `assets/js/video.js`: reproducción de la portada, ahorro de datos y visor del vuelo.
+- `assets/video/`: vuelo Full HD y vista previa; detalles en su README.
 - `assets/css/style.css`: estilos locales y adaptación a pantallas pequeñas.
 - `assets/images/`: capturas originales; el visor permite abrirlas completas.
 
@@ -61,6 +63,22 @@ Se retiraron cifras de ahorro, diagnósticos automáticos y testimonios de ejemp
 sin respaldo en el proyecto. El HTML de artículos es contenido editorial local;
 no debe interpolarse HTML procedente de formularios o de un futuro backend sin
 la validación correspondiente.
+
+## Video de portada
+
+El vuelo completo pesa 71,5 MB, frente a los 439,6 MB del archivo original.
+Mantiene 1920×1080, 29,97 fps y el audio sin recodificar. La vista previa de
+8 segundos pesa 4,4 MB; el fotograma inicial, 210 KB. Los dos archivos entregados,
+P1M3M y P2M3M, tienen iguales pistas de imagen y sonido y comparten una sola copia.
+
+El vuelo completo se carga al abrir el visor. La vista previa solo se inicia
+automáticamente en escritorio, cuando está visible, sin ahorro de datos ni
+preferencia de movimiento reducido. En celular se reproduce mediante un botón.
+Se detiene al salir de la vista o cerrar el visor; no hay sonido automático en
+la portada. Los originales se conservan fuera del repositorio.
+
+Al cambiar CSS o scripts, actualizar su parámetro `v` en las tres páginas para
+que los navegadores no combinen recursos de publicaciones distintas.
 
 ## Verificación
 

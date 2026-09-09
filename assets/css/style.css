@@ -396,6 +396,89 @@ section[id],footer[id] {
   margin-top:14px;
   color:#b2c9ba
 }
+.flight-stage {
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#183f34;
+}
+.flight-stage>img, .flight-preview {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.flight-preview {
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .35s;
+}
+.flight-stage.has-frame .flight-preview {
+  opacity:1;
+}
+.flight-badge {
+  position:absolute;
+  top:16px;
+  left:16px;
+  padding:6px 10px;
+  border-radius:5px;
+  color:white;
+  background:#0b302cd9;
+  font-size:.57rem;
+  font-weight:700;
+  letter-spacing:.12em;
+}
+.flight-toggle {
+  position:absolute;
+  bottom:14px;
+  right:14px;
+  min-height:44px;
+  padding:9px 14px;
+  border:1px solid #ffffff80;
+  border-radius:7px;
+  background:#0b302ce8;
+  color:white;
+  font-size:.74rem;
+  font-weight:600;
+}
+.flight-toggle:hover { background:#0b302c; }
+.hero-flight figcaption { padding-block:22px; }
+.flight-watch {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  min-height:65px;
+  padding:16px 25px;
+  border-top:1px solid #49674f;
+  color:var(--lime);
+  background:#0c3026;
+  font-size:.82rem;
+  font-weight:600;
+}
+.flight-watch:hover { background:#244b39; }
+.flight-watch>span:first-child { display:flex; align-items:center; gap:11px; }
+.flight-play-icon { font-size:.7rem; }
+.flight-length { font-size:.65rem; color:#c8d8ce; font-weight:400; }
+.flight-length>span { margin-left:10px; color:var(--lime); }
+.flight-dialog { width:min(1140px,calc(100% - 28px)); }
+.flight-dialog>video {
+  display:block;
+  width:100%;
+  max-height:72dvh;
+  aspect-ratio:16/9;
+  background:#06171c;
+  border-radius:8px;
+  object-fit:contain;
+}
+@media(max-width:540px) {
+  .flight-watch { padding-inline:16px; gap:10px; font-size:.76rem; }
+  .flight-badge { top:12px; left:12px; font-size:.51rem; }
+  .flight-toggle { bottom:10px; right:10px; font-size:.7rem; }
+  .flight-length { font-size:.59rem; }
+}
 .context-strip {
   border-bottom:1px solid var(--line);
   background:#f0f4e8
