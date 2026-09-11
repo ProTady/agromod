@@ -56,8 +56,12 @@ independiente con autenticación, manejo de errores y almacenamiento definidos.
 
 Las imágenes originales no se modificaron. Las inferiores se cargan de forma
 diferida y tienen dimensiones declaradas. Los estilos y las fuentes del sistema
-no dependen de un CDN. El identificador gráfico de AgroMod es tipográfico; el
-archivo `logo.png` existente corresponde a Dromapp y se conserva en el repositorio.
+no dependen de un CDN. El logo de AgroMod combina una A geométrica con esquinas
+de encuadre y un nombre en marfil y dorado. Sus archivos SVG son vectoriales y el
+texto está convertido en trazados para conservar su aspecto en cualquier equipo:
+`agromod-mark.svg`, `agromod-wordmark.svg` y la versión completa `agromod-logo.svg`.
+El icono de la pestaña usa el mismo símbolo simplificado. El archivo `logo.png`
+existente corresponde a Dromapp y se conserva en el repositorio.
 
 Los artículos mantienen sus IDs y slugs para preservar enlaces anteriores.
 Se retiraron cifras de ahorro, diagnósticos automáticos y testimonios de ejemplo
