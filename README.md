@@ -51,6 +51,7 @@ independiente con autenticación, manejo de errores y almacenamiento definidos.
 - `assets/js/video.js`: reproducción de la portada, ahorro de datos y visor del vuelo.
 - `assets/video/`: vuelo Full HD y vista previa; detalles en su README.
 - `assets/css/style.css`: estilos locales y adaptación a pantallas pequeñas.
+- `assets/css/editorial.css`: dirección visual compartida de portada, blog y artículos.
 - `assets/images/`: capturas originales; el visor permite abrirlas completas.
 
 Las imágenes originales no se modificaron. Las inferiores se cargan de forma
@@ -79,6 +80,18 @@ la portada. Los originales se conservan fuera del repositorio.
 
 Al cambiar CSS o scripts, actualizar su parámetro `v` en las tres páginas para
 que los navegadores no combinen recursos de publicaciones distintas.
+
+## Dirección visual
+
+El diseño editorial utiliza verde profundo, acentos dorados y una combinación
+de Segoe UI y Georgia, disponibles en el sistema, sin descargar fuentes externas.
+La portada muestra el vuelo real como fondo, con una capa oscura que mantiene
+legibles los textos. Conserva la carga diferida y los controles del video.
+
+Desde 1150 px la navegación ocupa una barra lateral; en tablet se muestra arriba
+y hasta 820 px se recoge en un menú. Los mapas conservan sus colores, proporciones
+y escalas originales. La nueva apariencia no modifica los servicios, los datos
+comerciales, el flujo de solicitud por WhatsApp ni el contenido de los artículos.
 
 ## Verificación
 

@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b302c">
+<meta name="theme-color" content="#14221e">
 <title>AgroMod | Vuelos multiespectrales y evaluación de cultivos</title>
 <meta name="description" content="Vuelos multiespectrales, evaluación con Dromapp y seguimiento en DROMOD para mandarinas y paltos en los valles de Huaura–Sayán. Solicita tu cotización personalizada.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="AgroMod | Vuelos multiespectrales y evaluación de cultivos">
 <meta property="og:description" content="Vuelos multiespectrales, evaluación con Dromapp y seguimiento en DROMOD para mandarinas y paltos en los valles de Huaura–Sayán. Solicita tu cotización personalizada.">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/style.css?v=20260909-1">
-<script src="assets/js/data.js?v=20260909-1" defer></script>
-<script src="assets/js/api.js?v=20260909-1" defer></script>
-<script src="assets/js/main.js?v=20260909-1" defer></script>
-<script src="assets/js/video.js?v=20260909-1" defer></script>
+<link rel="stylesheet" href="assets/css/style.css?v=20260911-1">
+<link rel="stylesheet" href="assets/css/editorial.css?v=20260911-1">
+<script src="assets/js/data.js?v=20260911-1" defer></script>
+<script src="assets/js/api.js?v=20260911-1" defer></script>
+<script src="assets/js/main.js?v=20260911-1" defer></script>
+<script src="assets/js/video.js?v=20260911-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -23,51 +24,48 @@
     <a class="wordmark" href="index.html" aria-label="AgroMod, inicio"><span class="brand-symbol" aria-hidden="true">a</span><span>Agro<strong>Mod</strong><small>AGRICULTURA DE PRECISIÓN</small></span></a>
     <button class="menu-toggle" id="mobile-menu-btn" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span><span></span></button>
     <nav id="mobile-menu" class="main-nav" aria-label="Principal">
-      <a href="#servicios">Servicios</a>
-      <a href="#galeria">Mapas reales</a>
-      <a href="#ecosistema">Dromapp + DROMOD</a>
-      <a href="blog.html">Blog</a>
+      <a href="#servicios" data-step="01">Servicios</a>
+      <a href="#galeria" data-step="02">Mapas reales</a>
+      <a href="#ecosistema" data-step="03">Dromapp + DROMOD</a>
+      <a href="blog.html" data-step="04">Blog</a>
       <a class="button button-small" href="#cotizador">Solicitar evaluación <span aria-hidden="true">↗</span></a>
     </nav>
+    <p class="rail-location">HUAURA–SAYÁN<span>PERÚ</span></p>
   </div>
 </header>
 <main id="contenido">
 <section class="hero" aria-labelledby="hero-title">
+  <div class="flight-stage" id="flight-stage">
+    <img src="assets/images/vuelo-m3m-poster.jpg" width="1200" height="675" alt="Vista aérea de hileras de árboles de cultivo durante un vuelo con el DJI Mavic 3M" fetchpriority="high">
+    <video id="hero-flight-video" class="flight-preview" muted loop playsinline preload="none" data-src="assets/video/vuelo-m3m-fondo-720p.mp4" aria-hidden="true"></video>
+  </div>
+  <div class="container hero-top"><span>UNA NUEVA MIRADA AL CAMPO</span><span>DJI MAVIC 3M · VUELO REAL</span></div>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> VALLES DE HUAURA–SAYÁN · MANDARINAS Y PALTOS</p>
-      <h1 id="hero-title">Conoce tu lote.<br>Decide <em>con datos.</em></h1>
-      <p class="hero-description">Conectamos mapas multiespectrales, evaluaciones de campo y seguimiento por lote para ayudarte a decidir dónde revisar primero.</p>
+      <p class="eyebrow">AGRICULTURA DE PRECISIÓN</p>
+      <h1 id="hero-title">Conoce tu lote.<br><em>Decide con datos.</em></h1>
+      <p class="hero-description">Desde el aire hasta el campo. Conectamos mapas multiespectrales, evaluaciones y seguimiento para entender mejor tu cultivo.</p>
       <div class="button-row"><a class="button button-lime" href="#cotizador">Evaluar mi lote <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="#galeria">Explorar mapas <span aria-hidden="true">↓</span></a></div>
-      <div class="hero-notes"><span>Vuelos multiespectrales</span><span>Registros con GPS</span><span>Seguimiento entre fechas</span></div>
-    </div>
-    <div class="hero-visual hero-flight">
-      <div class="map-heading"><span><span class="status-dot" aria-hidden="true"></span> EL CAMPO, DESDE ARRIBA</span><span>DJI MAVIC 3M</span></div>
-      <figure class="flight-card">
-        <div class="flight-stage" id="flight-stage">
-          <img src="assets/images/vuelo-m3m-poster.jpg" width="1200" height="675" alt="Vista aérea de hileras de árboles de cultivo durante un vuelo con el DJI Mavic 3M" fetchpriority="high">
-          <video id="hero-flight-video" class="flight-preview" muted loop playsinline preload="none" data-src="assets/video/vuelo-m3m-fondo-720p.mp4" aria-hidden="true"></video>
-          <span class="flight-badge">VUELO REAL</span>
-          <button id="hero-video-toggle" class="flight-toggle" type="button" aria-controls="hero-flight-video" aria-label="Reproducir vista previa" hidden>▶ Reproducir</button>
-        </div>
-        <figcaption><div><span class="eyebrow">UNA NUEVA MIRADA A CADA HILERA</span><h2>Tu cultivo,<br>desde otra perspectiva.</h2></div></figcaption>
-        <a href="assets/video/vuelo-m3m-1080p.mp4" id="flight-open" class="flight-watch"><span><span class="flight-play-icon" aria-hidden="true">▶</span> Ver vuelo completo</span><span class="flight-length">22 s · Full HD <span aria-hidden="true">↗</span></span></a>
-      </figure>
-      <p class="map-footnote" id="flight-preview-status" role="status">Grabación real con DJI Mavic 3M · Vista previa sin sonido.</p>
     </div>
   </div>
+  <div class="container hero-bottom">
+    <div class="hero-territory"><span class="eyebrow">HUAURA–SAYÁN, PERÚ</span><p>Mandarinas y paltos</p></div>
+    <a href="assets/video/vuelo-m3m-1080p.mp4" id="flight-open" class="flight-watch"><span class="flight-play-icon" aria-hidden="true">▶</span><span>Ver el vuelo<span class="flight-length">22 s · Full HD</span></span></a>
+    <button id="hero-video-toggle" class="flight-toggle" type="button" aria-controls="hero-flight-video" aria-label="Reproducir vista previa" hidden>▶ Reproducir</button>
+  </div>
+  <p class="sr-only" id="flight-preview-status" role="status">Grabación real con DJI Mavic 3M · Vista previa sin sonido.</p>
 </section>
 <div class="context-strip"><div class="container"><p>Una lectura completa de tu cultivo</p><span>01 <strong>Observar</strong></span><span>02 <strong>Verificar</strong></span><span>03 <strong>Dar seguimiento</strong></span></div></div>
 
 <section class="section container" id="servicios" aria-labelledby="services-title">
-  <div class="section-heading"><div><p class="eyebrow">SERVICIOS</p><h2 id="services-title">De la imagen a la<br>visita que importa.</h2></div><p>Elige el punto de partida. Definimos contigo el alcance según el cultivo, la ubicación y la información que necesitas.</p></div>
+  <div class="section-heading"><div><p class="eyebrow">01 / LO QUE HACEMOS</p><h2 id="services-title">De la imagen<br><em>a la decisión.</em></h2></div><p>Elige el punto de partida. Definimos contigo el alcance según el cultivo, la ubicación y la información que necesitas.</p></div>
   <div id="services-grid" class="services-grid"><p>Cargando servicios…</p></div>
   <noscript><p>Ofrecemos vuelos multiespectrales, evaluación con Dromapp y seguimiento con DROMOD. Activa JavaScript para preparar tu solicitud.</p></noscript>
 </section>
 
 <section class="section gallery-section" id="galeria" aria-labelledby="gallery-title">
   <div class="container">
-    <div class="section-heading"><div><p class="eyebrow">MUESTRAS DEL PROYECTO</p><h2 id="gallery-title">Mira el campo<br>desde otra perspectiva.</h2></div><p>Explora imágenes de paltos y cítricos. Abre cada mapa para revisar la captura completa y su escala original.</p></div>
+    <div class="section-heading"><div><p class="eyebrow">02 / MAPAS REALES</p><h2 id="gallery-title">Cada lote cuenta<br><em>una historia.</em></h2></div><p>Explora imágenes de paltos y cítricos. Abre cada mapa para revisar la captura completa y su escala original.</p></div>
     <div class="gallery-toolbar">
       <div class="filter-group" role="group" aria-label="Filtrar mapas por cultivo"><button class="filter-button" aria-pressed="true" data-crop="all">Todos</button><button class="filter-button" aria-pressed="false" data-crop="paltos">Paltos</button><button class="filter-button" aria-pressed="false" data-crop="citricos">Cítricos</button></div>
       <label class="inline-select">Índice <select id="gallery-index"><option value="all">Todos los índices</option><option value="NDVI">NDVI</option><option value="NDRE">NDRE</option><option value="RGB">RGB</option></select></label>
@@ -79,7 +77,7 @@
 </section>
 
 <section class="section container" id="ecosistema" aria-labelledby="ecosystem-title">
-  <div class="section-heading"><div><p class="eyebrow">UN FLUJO DE TRABAJO CONECTADO</p><h2 id="ecosystem-title">El dron observa.<br>Tu equipo da contexto.</h2></div><p>Reúne la vista aérea y lo que sucede a pie de lote. Así puedes volver a una ubicación y revisar su evolución.</p></div>
+  <div class="section-heading"><div><p class="eyebrow">03 / NUESTRO ECOSISTEMA</p><h2 id="ecosystem-title">Una sola mirada.<br><em>Tres perspectivas.</em></h2></div><p>Reúne la vista aérea y lo que sucede a pie de lote. Así puedes volver a una ubicación y revisar su evolución.</p></div>
   <div class="workflow">
     <article><span class="step-number">01</span><div class="workflow-icon" aria-hidden="true">↗</div><h3>Mapear con el dron</h3><p>Planificamos la captura y preparamos las capas del lote para localizar diferencias en el cultivo.</p><span class="workflow-tag">IMAGEN RGB + ÍNDICES</span></article>
     <article><span class="step-number">02</span><div class="workflow-icon" aria-hidden="true">⌖</div><h3>Verificar con Dromapp</h3><p>Registra observaciones, fotografías y ubicación desde el celular. Prepara los lotes antes de salir sin conexión y sincroniza al recuperar la red.</p><span class="workflow-tag">EVALUACIÓN DE CAMPO</span></article>
@@ -90,7 +88,7 @@
 
 <section class="section inquiry-section" id="cotizador" aria-labelledby="quote-title">
   <div class="container inquiry-layout">
-    <div class="inquiry-copy"><p class="eyebrow">HABLEMOS DE TU LOTE</p><h2 id="quote-title">Cada campo es distinto.<br>Tu evaluación también.</h2><p>Atendemos mandarinas y paltos en los valles de Huaura–Sayán. Cuéntanos la superficie y qué te gustaría revisar para preparar una propuesta según tu lote.</p>
+    <div class="inquiry-copy"><p class="eyebrow">HABLEMOS DE TU LOTE</p><h2 id="quote-title">Tu próximo paso<br><em>empieza en el campo.</em></h2><p>Atendemos mandarinas y paltos en los valles de Huaura–Sayán. Cuéntanos la superficie y qué te gustaría revisar para preparar una propuesta según tu lote.</p>
       <ol class="request-steps"><li><span>1</span>Completa los datos del lote.</li><li><span>2</span>Revisa el resumen de tu solicitud.</li><li><span>3</span>Abre WhatsApp y confirma el envío.</li></ol>
       <div class="quote-note"><strong>Precio según el alcance</strong><p>La superficie, ubicación y tipo de evaluación se revisan antes de cotizar. Preparar el mensaje no confirma una visita.</p></div>
     </div>
@@ -122,7 +120,7 @@
 </section>
 
 <section class="section container faq-layout" id="preguntas" aria-labelledby="faq-title">
-  <div><p class="eyebrow">ANTES DE EMPEZAR</p><h2 id="faq-title">Resolvamos<br>lo esencial.</h2></div>
+  <div><p class="eyebrow">ANTES DE EMPEZAR</p><h2 id="faq-title">Antes de volar,<br><em>hablemos.</em></h2></div>
   <div class="faq-list">
     <details><summary>¿Qué información necesito para solicitar una visita?</summary><p>Cultivo, superficie aproximada, ubicación y objetivo de la evaluación. Si tienes límites del lote o mapas anteriores, podemos revisar su disponibilidad al coordinar el trabajo.</p></details>
     <details><summary>¿Un mapa identifica una plaga o un problema de riego?</summary><p>El mapa ayuda a localizar diferencias para orientar el recorrido. La causa se revisa con observaciones y, cuando corresponda, otras mediciones en campo.</p></details>
@@ -132,7 +130,7 @@
   </div>
 </section>
 
-<section class="section blog-section"><div class="container"><div class="section-heading"><div><p class="eyebrow">DESDE EL CAMPO</p><h2>Información para<br>mirar mejor tu cultivo.</h2></div><a class="text-link" href="blog.html">Todos los artículos ↗</a></div><div id="recent-blog-grid" class="blog-grid"><p>Cargando artículos…</p></div></div></section>
+<section class="section blog-section"><div class="container"><div class="section-heading"><div><p class="eyebrow">04 / CUADERNO DE CAMPO</p><h2>Notas para<br><em>mirar más allá.</em></h2></div><a class="text-link" href="blog.html">Todos los artículos ↗</a></div><div id="recent-blog-grid" class="blog-grid"><p>Cargando artículos…</p></div></div></section>
 </main>
 <footer class="site-footer" id="contacto"><div class="container footer-main">
   <div><a class="wordmark" href="index.html">Agro<strong>Mod</strong></a><p>El campo, visto con más información.<br>Vuelos, evaluación y seguimiento por lote.</p></div>
